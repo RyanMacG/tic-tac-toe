@@ -1,6 +1,4 @@
 class Board
-  attr_reader :state
-
   def initialize
     @state = ['','','','','','','','','']
   end
@@ -10,9 +8,17 @@ class Board
   end
 
   def place(position:, type:)
-    return 'invalid position' if position > 8 || position < 0
-    return 'position already taken' unless state[position].empty?
+    return false if place_invalid?(position)
 
     state[position] = type.upcase
+    true
+  end
+
+  private
+
+  attr_reader :state
+
+  def place_invalid?(position)
+    position > 8 || position < 0 || !state[position].empty?
   end
 end

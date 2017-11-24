@@ -20,15 +20,15 @@ RSpec.describe Board do
 
     context 'invalid moves' do
       it 'should not allow placement beyond the last location' do
-        expect(board.place(position: 9, type: 'x')).to eq('invalid position')
+        expect(board.place(position: 9, type: 'x')).to eq(false)
       end
-  
+
       it 'should not allow placement before the first location' do
-        expect(board.place(position: -1, type: 'o')).to eq('invalid position')
+        expect(board.place(position: -1, type: 'o')).to eq(false)
       end
 
       it 'should not allow placement on a position that has been taken' do
-        expect(board.place(position: 0, type: 'o')).to eq('position already taken')
+        expect(board.place(position: 0, type: 'o')).to eq(false)
       end
     end
   end
